@@ -1,0 +1,26 @@
+{
+  "name": "khantavia",
+  "version": "0.1.0",
+  "description": "Khantavia Api",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app"
+  },
+  "author": "purding",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "helmet": "^6.1.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.2.0",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
