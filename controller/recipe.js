@@ -4,9 +4,11 @@ export async function getRecipes(req, res) {
   const pageInfo = req.query;
   const page = parseInt(pageInfo.page);
   const pageSize = parseInt(pageInfo.pageSize);
+  const category = pageInfo.category;
   
   try {
     let start = 0;
+    let categoryItem = category ??  '';
 
     if (page <= 0) {
       start = 1;
@@ -20,7 +22,7 @@ export async function getRecipes(req, res) {
       res.status(200).json([]);
     }
 
-    const data = await recipeRepository.getRecipes(start, pageSize);
+    const data = await recipeRepository.getRecipes(start, pageSize, categoryItem);
 
     res.status(200).json(data);
   } catch (error) {
