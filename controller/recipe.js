@@ -4,16 +4,17 @@ export async function getRecipes(req, res) {
   const pageInfo = req.query;
   const page = parseInt(pageInfo.page);
   const pageSize = parseInt(pageInfo.pageSize);
+  const search = pageInfo.search;
   const category = pageInfo.category;
   
   try {
-    let start = 0;
+    let pageNum = 0;
     let categoryItem = category ??  '';
 
     if (page <= 0) {
-      start = 1;
+      pageNum = 1;
     } else {
-      start = (page - 1) * pageSize;
+      pageNum = (page - 1) * pageSize;
     }
 
     const total = await recipeRepository.getRecipeTotalCnt();
@@ -22,7 +23,7 @@ export async function getRecipes(req, res) {
       res.status(200).json([]);
     }
 
-    const data = await recipeRepository.getRecipes(start, pageSize, categoryItem);
+    const data = await recipeRepository.getRecipes(pageNum, pageSize, categoryItem, search);
 
     res.status(200).json(data);
   } catch (error) {
