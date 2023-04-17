@@ -24,3 +24,9 @@ export async function getRecipes(pageNum, pageSize, categoryItem, search) {
     ) //
     .then((result) => result[0]);
 }
+
+export async function getRecipeById(id) {
+  return db
+    .execute(`${SELECT_RECIPE} WHERE id = ${id}`)
+    .then((result) => result[0]);
+}

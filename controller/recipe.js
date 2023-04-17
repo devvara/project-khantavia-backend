@@ -30,3 +30,15 @@ export async function getRecipes(req, res) {
     throw error;  
   }
 }
+
+
+export async function getRecipeById(req, res) {
+  const id = req.params.id;
+  
+  try {
+    const data = await recipeRepository.getRecipeById(id);
+    res.status(200).json(data);
+  } catch (error) {
+    throw error;
+  }
+}
