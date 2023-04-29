@@ -6,10 +6,12 @@ export async function getRecipes(req, res) {
   const pageSize = parseInt(pageInfo.pageSize);
   const search = pageInfo.search;
   const category = pageInfo.category;
+  const filter = pageInfo.filter.split(',').map(item => `'${item}'`).join(',');
   
   try {
     let pageNum = 0;
     let categoryItem = category ??  '';
+    let filterItems = filter ?? '';
 
     if (page <= 0) {
       pageNum = 1;
@@ -23,7 +25,7 @@ export async function getRecipes(req, res) {
       res.status(200).json([]);
     }
 
-    const data = await recipeRepository.getRecipes(pageNum, pageSize, categoryItem, search);
+    const data = await recipeRepository.getRecipes(pageNum, pageSize, categoryItem, filterItems, search);
 
     res.status(200).json(data);
   } catch (error) {

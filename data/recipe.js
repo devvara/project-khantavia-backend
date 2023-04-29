@@ -9,11 +9,13 @@ export async function getRecipeTotalCnt() {
     .then((result) => result[0]);
 }
 
-export async function getRecipes(pageNum, pageSize, categoryItem, search) {
+export async function getRecipes(pageNum, pageSize, categoryItem, filter, search) {
   return db
     .execute(
       `${SELECT_RECIPE} ${
         categoryItem ? `WHERE RCP_PAT2 = '${categoryItem}'` : ""
+      } ${
+        filter ? `WHERE RCP_WAY2 IN(${filter})` : ""
       } ${
         search
           ? categoryItem
