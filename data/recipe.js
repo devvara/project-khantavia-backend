@@ -15,10 +15,13 @@ export async function getRecipes(pageNum, pageSize, categoryItem, filter, search
       `${SELECT_RECIPE} ${
         categoryItem ? `WHERE RCP_PAT2 = '${categoryItem}'` : ""
       } ${
-        filter ? `WHERE RCP_WAY2 IN(${filter})` : ""
+        filter ? categoryItem || search 
+          ? `AND RCP_WAY2 IN(${filter})`
+          : `WHERE RCP_WAY2 IN(${filter})`
+        : ""
       } ${
         search
-          ? categoryItem
+          ? categoryItem || filter
             ? `AND RCP_NM LIKE '%${search}%'`
             : `WHERE RCP_NM LIKE '%${search}%'`
           : ""

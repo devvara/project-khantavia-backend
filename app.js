@@ -4,6 +4,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import recipeRouter from './router/recipe.js';
+import noticeRouter from './router/notice.js';
 import { db } from './db/database.js';
 import { config } from './config.js';
 import request from 'request';
@@ -16,6 +17,7 @@ app.use(cors());
 app.use(morgan('tiny'));
 
 app.use('/recipes', recipeRouter);
+app.use('/notices', noticeRouter);
 
 app.use((req, res, next) => {
   res.sendStatus(404);
