@@ -7,7 +7,6 @@ import recipeRouter from './router/recipe.js';
 import noticeRouter from './router/notice.js';
 import { db } from './db/database.js';
 import { config } from './config.js';
-import request from 'request';
 
 const app = express();
 
