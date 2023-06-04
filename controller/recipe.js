@@ -6,7 +6,8 @@ export async function getRecipes(req, res) {
   const pageSize = parseInt(pageInfo.pageSize);
   const search = pageInfo.search;
   const category = pageInfo.category;
-  const filter = pageInfo.filter?.split(',').map(item => `'${item}'`).join(',');
+  // const filter = pageInfo.filter?.split(',').map(item => `'${item}'`).join(',');
+  const filter = pageInfo.filter;
   
   try {
     let pageNum = 0;

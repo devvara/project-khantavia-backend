@@ -10,9 +10,13 @@ import { config } from './config.js';
 
 const app = express();
 
+// Middleware: Parse incoming requests with JSON payloads
 app.use(express.json());
+// Middleware: Apply Helmet security headers to enhance application security
 app.use(helmet());
+// Middleware: Enable Cross-Origin Resource Sharing(CORS) for handling request from different origins
 app.use(cors());
+// Middleware: Log HTTP requests in concise format using the 'tiny' predefined format of Morgan logger
 app.use(morgan('tiny'));
 
 app.use('/recipes', recipeRouter);
