@@ -20,12 +20,6 @@ export async function getRecipes(req, res) {
       pageNum = (page - 1) * pageSize;
     }
 
-    const total = await recipeRepository.getRecipeTotalCnt();
-
-    if (page > Math.round(total[0].cnt / pageSize)) {
-      res.status(200).json([]);
-    }
-
     const data = await recipeRepository.getRecipes(pageNum, pageSize, categoryItem, filterItems, search);
 
     res.status(200).json(data);
