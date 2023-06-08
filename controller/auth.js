@@ -46,5 +46,5 @@ export async function me(req, res, next) {
   if (!user) {
     return res.status(404).json({ message: '회원을 찾을 수 없습니다.'});
   }
-  res.status(200).json({ token: req.token, username: user.username });
+  res.status(200).json({ token: req.token, email: user.email, name: user.name, url: user.url });
 }

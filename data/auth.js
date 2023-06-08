@@ -36,15 +36,15 @@ export const User = sequelize.define('user',
 );
 
 export async function findOne(email) {
-  return await User.findOne({
+  return User.findOne({
     where: { email }
   });
 }
 
 export async function findById(id) {
-  return await User.findByPk(id);
+  return User.findByPk(id);
 }
 
 export async function createUser(user) {
-  return await User.create(user).then((data) => data.dataValue.id);
+  return User.create(user).then((data) => data.dataValue.id);
 }
