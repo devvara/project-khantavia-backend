@@ -3,6 +3,7 @@ import 'express-async-errors';
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
+import authRouter from './router/auth.js';
 import recipeRouter from './router/recipe.js';
 import noticeRouter from './router/notice.js';
 import { db, sequelize } from './db/database.js';
@@ -19,6 +20,7 @@ app.use(cors());
 // Middleware: Log HTTP requests in concise format using the 'tiny' predefined format of Morgan logger
 app.use(morgan('tiny'));
 
+app.use('/auth', authRouter);
 app.use('/recipes', recipeRouter);
 app.use('/notices', noticeRouter);
 
