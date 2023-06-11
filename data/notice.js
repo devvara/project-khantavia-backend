@@ -1,9 +1,36 @@
-import { db } from "../db/database.js";
+import SQ, { Op } from 'sequelize';
+import { sequelize } from "../db/database.js";
+const DataTypes = SQ.DataTypes;
 
-const SELECT_NOTICE = "SELECT * FROM notice";
+// Defined the Sequlize model
+const Notice = sequelize.define('notice', {
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  title: {
+    type: DataTypes.STRING(255),
+    allowNull: false,
+  },
+  content: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+ }, {
+    tableName: 'notice',
+    timestamps: true,
+    createdAt: "created_at",
+    updatedAt: "updated_at",
+  }
+);
 
+
+/**
+ * 
+ * @returns 
+ */
 export async function getNotices() {
-  return db
-    .execute(SELECT_NOTICE)
-    .then((result) => result[0]);
+  return Notice.findAll();
 }

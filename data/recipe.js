@@ -1,4 +1,4 @@
-import SQ, { Op } from 'sequelize' ;
+import SQ, { Op } from 'sequelize';
 import { sequelize } from "../db/database.js";
 const DataTypes = SQ.DataTypes;
 
@@ -290,7 +290,7 @@ export async function getRecipes(pageNum, pageSize, categoryItem, filter, search
  * @returns {Promise<object|null>}
  */
 export async function getRecipeById(id) {
-  return await Recipe.findOne({
+  return Recipe.findOne({
     where: { id },
   });
 }
