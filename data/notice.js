@@ -28,8 +28,8 @@ const Notice = sequelize.define('notice', {
 
 
 /**
- * 
- * @returns 
+ * Find all notices
+ * @returns {Promise<object|null>}
  */
 export async function getNotices() {
   return Notice.findAll();
